@@ -3,6 +3,8 @@ package Personas;
 public class Usuario {
     private int id;
     private String usuario;
+    private String telefono;
+    
     public Usuario(){}
     
     public int getId(){
@@ -20,4 +22,12 @@ public class Usuario {
     public void setUsuario(String usuario){
         this.usuario = usuario;
     }    
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }   
 }

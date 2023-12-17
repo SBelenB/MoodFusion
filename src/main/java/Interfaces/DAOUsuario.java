@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Personas.Usuario;
+import javax.swing.table.DefaultTableModel;
 
 public interface DAOUsuario {
     
@@ -11,5 +12,7 @@ public interface DAOUsuario {
     public void eliminar(Usuario usuario);
     
     public void buscar(Usuario usuario);
+    
+    public DefaultTableModel mostrar();
     
 }
