@@ -7,4 +7,4 @@ CRUD diseñado para el registro de pacientes en un centro médico. Permite almac
 
 ## Capturas de pantalla 🚀
 
-![image]()
+![image](https://i.imgur.com/7EBtFhs.png)
