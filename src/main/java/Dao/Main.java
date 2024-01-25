@@ -1,7 +1,9 @@
 package Dao;
 
+import Personas.Disenio;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class Main {
     
@@ -9,7 +11,7 @@ public class Main {
     private Connection conectar = null;
     private final String contrasena = "Marco@2016#";
     private final String usuario = "root";
-    private final String db = "cursoneoris";
+    private final String db = "pacientes";
     private final String ip = "localhost";
     private final String puerto = "3306";
     private final String cadena = "jdbc:mysql://" + ip + ":" + puerto + "/" + db;
@@ -24,8 +26,14 @@ public class Main {
         return conectar;
     }
     
-    public static void main(String[] args){
-        Main app = new Main();
-        app.establecerConeccion();
+    public static void main(String[] args) {
+    Main app = new Main();
+    Connection connection = app.establecerConeccion();
+    
+    if (connection != null) {
+        SwingUtilities.invokeLater(() -> {
+            new Disenio().setVisible(true);
+        });
     }
+}
 }

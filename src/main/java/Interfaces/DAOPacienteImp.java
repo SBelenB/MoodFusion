@@ -1,30 +1,30 @@
 package Interfaces;
 
 import Dao.Main;
-import Personas.Usuario;
+import Personas.Paciente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
-public class DAOUsuarioImp implements DAOUsuario {
+public class DAOPacienteImp implements DAOPaciente {
 
     Main main = new Main();
 
-    public DAOUsuarioImp() {
+    public DAOPacienteImp() {
     }
 
     @Override
-    public void registrar(Usuario usuario) {
+    public void registrar(Paciente paciente) {
         try {
             Connection conectar = main.establecerConeccion();
 
-            PreparedStatement insertar = conectar.prepareStatement("INSERT INTO usuarios (id, nombre, telefono) VALUES(?, ?, ?)");
+            PreparedStatement insertar = conectar.prepareStatement("INSERT INTO paciente (id, nombre, telefono) VALUES(?, ?, ?)");
 
-            insertar.setInt(1, usuario.getId());
-            insertar.setString(2, usuario.getUsuario());
-            insertar.setString(3, usuario.getTelefono());
+            insertar.setInt(1, paciente.getId());
+            insertar.setString(2, paciente.getPaciente());
+            insertar.setString(3, paciente.getTelefono());
             insertar.executeUpdate();
 
             conectar.close();
@@ -35,15 +35,15 @@ public class DAOUsuarioImp implements DAOUsuario {
     }
 
     @Override
-    public void modificar(Usuario usuario) {
+    public void modificar(Paciente paciente) {
         try {
             Connection conectar = main.establecerConeccion();
 
-            PreparedStatement modificar = conectar.prepareStatement("UPDATE usuarios set nombre = ?, telefono = ? where id = ?");
+            PreparedStatement modificar = conectar.prepareStatement("UPDATE paciente set nombre = ?, telefono = ? where id = ?");
 
-            modificar.setString(1, usuario.getUsuario());
-            modificar.setInt(2, usuario.getId());
-            modificar.setString(3, usuario.getTelefono());
+            modificar.setString(1, paciente.getPaciente());
+            modificar.setInt(2, paciente.getId());
+            modificar.setString(3, paciente.getTelefono());
             modificar.executeUpdate();
 
         } catch (Exception e) {
@@ -52,13 +52,13 @@ public class DAOUsuarioImp implements DAOUsuario {
     }
 
     @Override
-    public void eliminar(Usuario usuario) {
+    public void eliminar(Paciente paciente) {
         try {
             Connection conectar = main.establecerConeccion();
 
-            PreparedStatement eliminar = conectar.prepareStatement("DELETE FROM usuarios WHERE id = ?");
+            PreparedStatement eliminar = conectar.prepareStatement("DELETE FROM paciente WHERE id = ?");
 
-            eliminar.setInt(1, usuario.getId());
+            eliminar.setInt(1, paciente.getId());
             eliminar.executeUpdate();
 
         } catch (Exception e) {
@@ -67,20 +67,20 @@ public class DAOUsuarioImp implements DAOUsuario {
     }
 
     @Override
-    public void buscar(Usuario usuario) {
+    public void buscar(Paciente paciente) {
         try {
 
             Connection conectar = main.establecerConeccion();
 
-            PreparedStatement buscar = conectar.prepareStatement("select * from usuarios where id = ?");
+            PreparedStatement buscar = conectar.prepareStatement("select * from paciente where id = ?");
 
-            buscar.setInt(1, usuario.getId());
+            buscar.setInt(1, paciente.getId());
 
             ResultSet consulta = buscar.executeQuery();
             if (consulta.next()) {
-                usuario.setId(Integer.parseInt(consulta.getString("id")));
-                usuario.setUsuario(consulta.getString("nombre"));
-                usuario.setTelefono(consulta.getString("telefono"));
+                paciente.setId(Integer.parseInt(consulta.getString("id")));
+                paciente.setPaciente(consulta.getString("nombre"));
+                paciente.setTelefono(consulta.getString("telefono"));
 
                 conectar.close();
             }
@@ -91,8 +91,8 @@ public class DAOUsuarioImp implements DAOUsuario {
     }
 
     public DefaultTableModel mostrar() {
-        // Definir la sentencia SQL para seleccionar todos los registros de la tabla usuarios
-        String sql = "SELECT * FROM usuarios";
+        // Definir la sentencia SQL para seleccionar todos los registros de la tabla pacientes
+        String sql = "SELECT * FROM paciente";
 
         // Crear un modelo para almacenar los registros dentro de la tabla
         DefaultTableModel model = new DefaultTableModel();

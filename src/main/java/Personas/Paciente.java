@@ -1,11 +1,11 @@
 package Personas;
 
-public class Usuario {
+public class Paciente {
     private int id;
-    private String usuario;
+    private String paciente;
     private String telefono;
     
-    public Usuario(){}
+    public Paciente(){}
     
     public int getId(){
         return id;
@@ -15,12 +15,12 @@ public class Usuario {
         this.id = id;
     }
     
-    public String getUsuario(){
-        return usuario;
+    public String getPaciente(){
+        return paciente;
     }
     
-    public void setUsuario(String usuario){
-        this.usuario = usuario;
+    public void setPaciente(String paciente){
+        this.paciente = paciente;
     }    
 
     public String getTelefono() {

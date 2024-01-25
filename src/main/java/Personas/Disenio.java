@@ -1,6 +1,6 @@
 package Personas;
 
-import Interfaces.DAOUsuarioImp;
+import Interfaces.DAOPacienteImp;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,9 +19,9 @@ public class Disenio extends javax.swing.JFrame {
     
     //Crear un nuevo registro
     public void registrar(){
-        DAOUsuarioImp usuario_dao = new DAOUsuarioImp();
+        DAOPacienteImp paciente_dao = new DAOPacienteImp();
         
-        Usuario usuario = new Usuario();
+        Paciente paciente = new Paciente();
         
         if (cajaTextoId.getText().isEmpty() || cajaTextoNombre.getText().isEmpty() || cajaTextoTelefono.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos para continuar");
@@ -30,42 +30,42 @@ public class Disenio extends javax.swing.JFrame {
             String nombre = cajaTextoNombre.getText();
             String telefono = cajaTextoTelefono.getText();
             
-            usuario.setId(id);
-            usuario.setUsuario(nombre);
-            usuario.setTelefono(telefono);
+            paciente.setId(id);
+            paciente.setPaciente(nombre);
+            paciente.setTelefono(telefono);
             
-            usuario_dao.registrar(usuario);
+            paciente_dao.registrar(paciente);
             JOptionPane.showMessageDialog(null, "Registro ingresado correctamente");
         }
     }
     
     //Método para buscar
     public void buscar() {
-        DAOUsuarioImp usuario_dao = new DAOUsuarioImp();
+        DAOPacienteImp paciente_dao = new DAOPacienteImp();
         
-        Usuario usuario = new Usuario();
+        Paciente paciente = new Paciente();
         
         if (cajaTextoId.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor digite el id a buscar");
         } else {
             int id = Integer.parseInt(cajaTextoId.getText());
 
-            usuario.setId(id);
+            paciente.setId(id);
 
-            usuario_dao.buscar(usuario);
+            paciente_dao.buscar(paciente);
 
-            cajaTextoId.setText(String.valueOf(usuario.getId()));
-            cajaTextoNombre.setText(usuario.getUsuario());
+            cajaTextoId.setText(String.valueOf(paciente.getId()));
+            cajaTextoNombre.setText(paciente.getPaciente());
 
-            JOptionPane.showMessageDialog(null, "Registro encontrado con éxito:\n" + usuario.getUsuario());
+            JOptionPane.showMessageDialog(null, "Registro encontrado con éxito:\n" + paciente.getPaciente());
         }
     }
     
     //Modificar un registro
     public void actualizar() {
-        DAOUsuarioImp usuario_dao = new DAOUsuarioImp();
+        DAOPacienteImp paciente_dao = new DAOPacienteImp();
 
-        Usuario usuario = new Usuario();
+        Paciente paciente = new Paciente();
 
         if (cajaTextoId.getText().isEmpty() || cajaTextoNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese el registro que desea modificar");
@@ -74,11 +74,11 @@ public class Disenio extends javax.swing.JFrame {
             String nombre = cajaTextoNombre.getText();
             String telefono = cajaTextoTelefono.getText();
 
-            usuario.setId(id);
-            usuario.setUsuario(nombre);
-            usuario.setTelefono(telefono);
+            paciente.setId(id);
+            paciente.setPaciente(nombre);
+            paciente.setTelefono(telefono);
             
-            usuario_dao.modificar(usuario);
+            paciente_dao.modificar(paciente);
 
             JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
         }
@@ -86,8 +86,8 @@ public class Disenio extends javax.swing.JFrame {
     
     //Mostrar lista de pacientes
     public void mostrar() {
-        DAOUsuarioImp usuario_dao = new DAOUsuarioImp();
-        DefaultTableModel model = usuario_dao.mostrar();
+        DAOPacienteImp paciente_dao = new DAOPacienteImp();
+        DefaultTableModel model = paciente_dao.mostrar();
 
         // Asignamos el modelo de la tabla al componente TablaDatos
         TablaDatos.setModel(model);
@@ -356,18 +356,18 @@ public class Disenio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        DAOUsuarioImp usuario_dao = new DAOUsuarioImp();
+        DAOPacienteImp paciente_dao = new DAOPacienteImp();
         
-        Usuario usuario = new Usuario();
+        Paciente paciente = new Paciente();
         
         if (cajaTextoId.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor, ingrese el registro que desea modificar");
         } else {
             //Obtenemos el id y el nombre de la caja de texto
             int id = Integer.parseInt(cajaTextoId.getText());
-            usuario.setId(id);
+            paciente.setId(id);
             
-            usuario_dao.eliminar(usuario);
+            paciente_dao.eliminar(paciente);
             JOptionPane.showMessageDialog(null, "Registro eliminado correctamente");
             limpiar();
         }
