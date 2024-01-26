@@ -19,7 +19,6 @@ public class Main {
     public Connection establecerConeccion(){
         try {
             conectar = DriverManager.getConnection(cadena, usuario, contrasena);
-            JOptionPane.showMessageDialog(null, "Se conectó correctamente");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo conectar" + e.toString());
         }
