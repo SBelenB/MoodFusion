@@ -9,7 +9,7 @@ public class Main {
     
     //Atributos de conexión
     private Connection conectar = null;
-    private final String contrasena = "Marco@2016#";
+    private final String contrasena = "123456789";
     private final String usuario = "root";
     private final String db = "pacientes";
     private final String ip = "localhost";
